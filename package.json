@@ -1,0 +1,44 @@
+{
+  "name": "dota2_gql_server",
+  "version": "0.0.0",
+  "description": "Data stuff",
+  "main": "server.js",
+  "repository": "",
+  "author": "kotwalkaran64@gmail.com",
+  "dependencies": {
+    "async": "~0.2.8",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "cross-env": "^5.1.4",
+    "express": "~3.2.4",
+    "socket.io": "~0.9.14",
+    "start-server-webpack-plugin": "^2.2.5",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.5",
+    "prettier": "^1.12.1",
+    "stylelint": "^9.2.0",
+    "stylelint-config-standard": "^18.2.0"
+  },
+  "scripts": {
+    "build:server:once": "cross-env NODE_ENV=development webpack --config webpack.config.server.js",
+    "dev:server": "npm run build:server:once && npm-run-all --parallel nodemon:prod watch:server",
+    "watch:server": "NODE_ENV=development nodemon server.prod.js",
+    "nodemon:prod": "cross-env NODE_ENV=development node-dev server.prod.js",
+    "lint:js": "eslint . --fix",
+    "format": "prettier --write '**/*.{js,css,md}'",
+    "build": "babel src/ -d lib/",
+    "prepublish": "npm run build",
+    "flow": "flow"
+  }
+}
