@@ -20,12 +20,16 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
+    "danger": "^3.6.5",
+    "documentation": "^6.3.2",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-prettier": "^2.6.0",
     "husky": "^0.14.3",
+    "jest": "^22.4.3",
     "lint-staged": "^7.0.5",
+    "markdown-magic": "^0.1.21",
     "prettier": "^1.12.1",
     "stylelint": "^9.2.0",
     "stylelint-config-standard": "^18.2.0"
@@ -39,6 +43,21 @@
     "format": "prettier --write '**/*.{js,css,md}'",
     "build": "babel src/ -d lib/",
     "prepublish": "npm run build",
-    "flow": "flow"
+    "flow": "flow",
+    "docs": "md-magic --path '**/*.md' --ignore 'node_modules'",
+    "docs:build": "documentation build 'server/**' -f html -o docs"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "jest --bail --findRelatedTests",
+      "prettier --write",
+      "git add"
+    ],
+    "*.scss": [
+      "stylelint --fix",
+      "prettier --write",
+      "git add"
+    ]
   }
 }
