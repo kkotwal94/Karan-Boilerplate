@@ -6,18 +6,29 @@ import webpack from 'webpack';
 import webpackConfig from '../webpack/webpack.config';
 import webpackDevMiddleWare from 'webpack-dev-middleware';
 import webpackHotMiddleWare from 'webpack-hot-middleware';
+import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
+import playground from 'graphql-playground-middleware-express';
+import bodyParser from 'body-parser';
+import schema from './graph/schema';
+import { makeExecutableSchema } from 'graphql-tools';
 
 const app = express();
-const compiler = webpack(webpackConfig());
+
+const webpackCompiled = webpackConfig();
+const compiler = webpack(webpackCompiled);
+
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config();
+}
+app.use(morgan('dev'));
 
 app.use(
   webpackDevMiddleWare(compiler, {
     logLevel: 'warn',
-    publicPath: webpackConfig().output.publicPath,
+    publicPath: webpackCompiled.output.publicPath,
   })
 );
 
-// Step 3: Attach the hot middleware to the compiler & the server
 app.use(
   webpackHotMiddleWare(compiler, {
     log: console.log,
@@ -26,11 +37,8 @@ app.use(
   })
 );
 
-if (process.env.NODE_ENV !== 'production') {
-  dotenv.config();
-}
-
-app.use(morgan('dev'));
+app.post('/graphql', bodyParser.json(), graphqlExpress({ schema }));
+app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
 app.get('/', (req, res) => {
   console.log(__dirname);
@@ -43,5 +51,5 @@ app.get('/api/test', (req, res) => {
 
 app.listen(process.env.PORT || 3000, process.env.IP || '0.0.0.0', () => {
   //const addr = app.address();
-  console.log('Boilerplate listening', process.env.IP + ':' + process.env.PORT);
+  console.log(`GraphiQL is now running on ${process.env.IP}:${process.env.PORT}/graphiql`);
 });
