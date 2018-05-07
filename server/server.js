@@ -8,12 +8,12 @@ import webpackDevMiddleWare from 'webpack-dev-middleware';
 import webpackHotMiddleWare from 'webpack-hot-middleware';
 
 const app = express();
-const compiler = webpack(webpackConfig);
+const compiler = webpack(webpackConfig());
 
 app.use(
   webpackDevMiddleWare(compiler, {
     logLevel: 'warn',
-    publicPath: webpackConfig.output.publicPath,
+    publicPath: webpackConfig().output.publicPath,
   })
 );
 
