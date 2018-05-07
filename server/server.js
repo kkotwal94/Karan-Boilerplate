@@ -3,13 +3,15 @@ import morgan from 'morgan';
 import path from 'path';
 import dotenv from 'dotenv';
 import webpack from 'webpack';
-import webpackConfig from '../webpack/webpack.config.server';
+import webpackConfig from '../webpack/webpack.config';
+import webpackDevMiddleWare from 'webpack-dev-middleware';
+import webpackHotMiddleWare from 'webpack-hot-middleware';
 
 const app = express();
 const compiler = webpack(webpackConfig);
 
 app.use(
-  require('webpack-dev-middleware')(compiler, {
+  webpackDevMiddleWare(compiler, {
     logLevel: 'warn',
     publicPath: webpackConfig.output.publicPath,
   })
@@ -17,7 +19,7 @@ app.use(
 
 // Step 3: Attach the hot middleware to the compiler & the server
 app.use(
-  require('webpack-hot-middleware')(compiler, {
+  webpackHotMiddleWare(compiler, {
     log: console.log,
     path: '/__webpack_hmr',
     heartbeat: 10 * 1000,
@@ -32,7 +34,7 @@ app.use(morgan('dev'));
 
 app.get('/', (req, res) => {
   console.log(__dirname);
-  res.sendfile(path.join(__dirname, '../client', 'index.html'));
+  res.sendfile(path.join(__dirname, '../app', 'index.html'));
 });
 
 app.get('/api/test', (req, res) => {
