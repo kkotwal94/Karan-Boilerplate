@@ -1,55 +1,26 @@
 import express from 'express';
 import morgan from 'morgan';
-import path from 'path';
-import dotenv from 'dotenv';
-import webpack from 'webpack';
-import webpackConfig from '../webpack/webpack.config';
-import webpackDevMiddleWare from 'webpack-dev-middleware';
-import webpackHotMiddleWare from 'webpack-hot-middleware';
-import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
-import playground from 'graphql-playground-middleware-express';
-import bodyParser from 'body-parser';
-import schema from './graph/schema';
-import { makeExecutableSchema } from 'graphql-tools';
+import db from './db';
+import initHotLoader from './init/hotLoader';
+import initExpress from './init/express';
+import initGraphQL from './init/graphql';
+import initRoutes from './init/routes';
 
 const app = express();
 
-const webpackCompiled = webpackConfig();
-const compiler = webpack(webpackCompiled);
+db.connect();
 
-if (process.env.NODE_ENV !== 'production') {
-  dotenv.config();
-}
 app.use(morgan('dev'));
 
-app.use(
-  webpackDevMiddleWare(compiler, {
-    logLevel: 'warn',
-    publicPath: webpackCompiled.output.publicPath,
-  })
-);
+initHotLoader(app);
 
-app.use(
-  webpackHotMiddleWare(compiler, {
-    log: console.log,
-    path: '/__webpack_hmr',
-    heartbeat: 10 * 1000,
-  })
-);
+initExpress(app);
 
-app.post('/graphql', bodyParser.json(), graphqlExpress({ schema }));
-app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+initGraphQL(app);
 
-app.get('/', (req, res) => {
-  console.log(__dirname);
-  res.sendfile(path.join(__dirname, '../app', 'index.html'));
-});
+initRoutes(app);
 
-app.get('/api/test', (req, res) => {
-  res.send('Test Reached');
-});
-
-app.listen(process.env.PORT || 3000, process.env.IP || '0.0.0.0', () => {
+app.listen(app.get('port'), () => {
   //const addr = app.address();
-  console.log(`GraphiQL is now running on ${process.env.IP}:${process.env.PORT}/graphiql`);
+  console.log(`GraphiQL is now running on localhost:${app.get('port')}/graphiql`);
 });
