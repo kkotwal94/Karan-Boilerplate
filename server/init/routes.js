@@ -8,7 +8,6 @@ const productsController = controllers && controllers.products;
 
 export default app => {
   app.get('/', (req, res) => {
-    console.log(__dirname);
     res.sendfile(path.join(__dirname, '../../app', 'index.html'));
   });
 
