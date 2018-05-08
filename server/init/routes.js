@@ -3,6 +3,7 @@ import db from '../db';
 
 const { controllers } = db;
 
+const usersController = controllers && controllers.users;
 const productsController = controllers && controllers.products;
 
 export default app => {
@@ -14,6 +15,12 @@ export default app => {
   app.get('/api/test', (req, res) => {
     res.send('Test Reached');
   });
+
+  if (usersController) {
+    app.post('/sessions', usersController.login);
+    app.post('/users', usersController.signUp);
+    app.delete('/sessions', usersController.logout);
+  }
 
   if (productsController) {
     app.get('/api/products', productsController.all);
