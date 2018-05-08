@@ -4,7 +4,6 @@ import db from '../db';
 const { controllers } = db;
 
 const productsController = controllers && controllers.products;
-console.log(controllers);
 
 export default app => {
   app.get('/', (req, res) => {
@@ -19,7 +18,7 @@ export default app => {
   if (productsController) {
     app.get('/api/products', productsController.all);
     app.post('/api/products', productsController.add);
-    app.put('/api/products', productsController.update);
-    app.delete('/api/products', productsController.delete);
+    app.put('/api/products/:id', productsController.update);
+    app.delete('/api/products', productsController.remove);
   }
 };

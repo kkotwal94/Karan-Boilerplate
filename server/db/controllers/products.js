@@ -26,8 +26,8 @@ export function update(req, res) {
   const isIncrement = req.body.isIncrement;
   const omitKeys = ['id', '_id', '_v', 'isIncrement', 'isFull'];
   const data = _.omit(req.body, omitKeys);
-
-  Product.findOneAndUpdate(query, data, err => {
+  console.log(data);
+  Product.findOneAndUpdate(query, data, { new: true }, err => {
     if (err) {
       console.log('Error on save');
       return res.status(500);
