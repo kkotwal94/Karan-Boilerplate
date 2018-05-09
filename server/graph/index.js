@@ -1,6 +1,7 @@
 import { GraphQLSchema, GraphQLObjectType } from 'graphql';
-import { productsQuery } from './queries/products';
-import { usersQuery } from './queries/users';
+import queries from './queries';
+
+const { productsQuery, usersQuery } = queries;
 
 const Query = new GraphQLObjectType({
   name: 'Schema',

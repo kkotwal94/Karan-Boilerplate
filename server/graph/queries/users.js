@@ -1,6 +1,8 @@
 import { GraphQLObjectType, GraphQLList } from 'graphql';
-import { User, Profile } from '../types/users';
+import types from '../types';
 import UsersModel from '../../db/models/user';
+
+const { User, Profile } = types;
 
 const usersQuery = new GraphQLObjectType({
   name: 'allUsers',
@@ -18,6 +20,4 @@ const usersQuery = new GraphQLObjectType({
   }),
 });
 
-export default {
-  usersQuery,
-};
+export default usersQuery;

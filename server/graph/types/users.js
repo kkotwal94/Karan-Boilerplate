@@ -1,24 +1,5 @@
 import { GraphQLObjectType, GraphQLNonNull, GraphQLID, GraphQLString } from 'graphql';
 
-const User = new GraphQLObjectType({
-  name: 'user',
-  description: 'Gets our User',
-  fields: () => ({
-    email: {
-      type: GraphQLString,
-      description: 'Email for user',
-    },
-    profile: {
-      type: new GraphQLObjectType(Profile),
-      description: 'Profile for user',
-    },
-    password: {
-      type: GraphQLString,
-      description: 'Password for a user',
-    },
-  }),
-});
-
 const Profile = new GraphQLObjectType({
   name: 'Profile',
   description: 'User Profile',
@@ -42,6 +23,25 @@ const Profile = new GraphQLObjectType({
     picture: {
       type: GraphQLString,
       description: 'Graphql',
+    },
+  }),
+});
+
+const User = new GraphQLObjectType({
+  name: 'user',
+  description: 'Gets our User',
+  fields: () => ({
+    email: {
+      type: GraphQLString,
+      description: 'Email for user',
+    },
+    profile: {
+      type: new GraphQLObjectType(Profile),
+      description: 'Profile for user',
+    },
+    password: {
+      type: GraphQLString,
+      description: 'Password for a user',
     },
   }),
 });

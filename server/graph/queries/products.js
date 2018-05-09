@@ -1,6 +1,10 @@
 import { GraphQLObjectType, GraphQLList } from 'graphql';
-import { Product } from '../types/products';
+import types from '../types';
 import ProductsModel from '../../db/models/products';
+
+const { Product } = types;
+
+console.log(Product);
 
 const productsQuery = new GraphQLObjectType({
   name: 'allProducts',
@@ -18,6 +22,4 @@ const productsQuery = new GraphQLObjectType({
   }),
 });
 
-export default {
-  productsQuery,
-};
+export default productsQuery;
