@@ -35,10 +35,12 @@ const User = new GraphQLObjectType({
       type: GraphQLString,
       description: 'Email for user',
     },
+    /*
     profile: {
       type: new GraphQLObjectType(Profile),
       description: 'Profile for user',
     },
+    */
     password: {
       type: GraphQLString,
       description: 'Password for a user',

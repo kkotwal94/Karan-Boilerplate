@@ -4,19 +4,18 @@ import ProductsModel from '../../db/models/products';
 
 const { Product } = types;
 
-console.log(Product);
-
 const productsQuery = new GraphQLObjectType({
   name: 'allProducts',
   fields: () => ({
     products: {
       type: new GraphQLList(Product),
       resolve: () => {
-        const products = ProductsModel.find().exec();
-        if (products) {
-          throw new Error('Error');
-        }
-        return products;
+        Product.find({}).exec((err, products) => {
+          if (err) {
+            return new Error("Couldn't Fetch Errors");
+          }
+          return products;
+        });
       },
     },
   }),
