@@ -17,6 +17,10 @@ const Product = new GraphQLObjectType({
       type: GraphQLString,
       description: 'Product Name',
     },
+    date: {
+      type: GraphQLString,
+      description: 'Product Created Date',
+    },
     description: {
       type: GraphQLString,
       description: 'Product description',

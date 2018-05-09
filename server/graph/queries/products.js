@@ -10,7 +10,7 @@ const productsQuery = new GraphQLObjectType({
     products: {
       type: new GraphQLList(Product),
       resolve: () => {
-        Product.find({}).exec((err, products) => {
+        ProductsModel.find({}).exec((err, products) => {
           if (err) {
             return new Error("Couldn't Fetch Errors");
           }
