@@ -1,9 +1,24 @@
 import { GraphQLSchema, GraphQLObjectType } from 'graphql';
-import queries from './queries';
+import { productsQuery } from './queries/products';
+import { usersQuery } from './queries/users';
 
-export default new GraphQLSchema({
-  query: new GraphQLObjectType({
-    name: 'RootQueryType',
-    fields: queries,
+const Query = new GraphQLObjectType({
+  name: 'Schema',
+  description: 'Root of the Schema',
+  fields: () => ({
+    allUsers: {
+      type: usersQuery,
+      description: 'Gets all Users',
+    },
+    allProducts: {
+      type: productsQuery,
+      description: 'Gets all Products',
+    },
   }),
 });
+
+const Schema = new GraphQLSchema({
+  query: Query,
+});
+
+export default Schema;
