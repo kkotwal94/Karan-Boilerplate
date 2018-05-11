@@ -37,8 +37,8 @@ query{
 9. Graphql initialization with express lives in server/init/graphql
 10. Server entry point is server/server.js and Application (front end) entry point is app/index.js
 
-1. Use prettier, prettier babelrc
-2. On save, have prettier auto run
+TODO:
+----
 3. Set up TRAVISCI, and code coverage
 4. Set up Flow
 5. Githook lint-staged husky --save-dev
