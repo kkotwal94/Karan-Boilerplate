@@ -10,6 +10,7 @@ export default {
     aProduct: async (root, { id }) => {
       const product = await ProductsModel.findOne({ id });
       console.log(product);
+      return product;
     },
   },
 };
