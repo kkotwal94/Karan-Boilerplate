@@ -1,11 +1,7 @@
-import productModel from './products';
-import userModel from './users';
+import { mergeTypes } from 'merge-graphql-schemas';
+import productType from './products';
+import userType from './users';
 
-const { Product } = productModel;
-const { User, Profile } = userModel;
+const types = [productType, userType];
 
-export default {
-  Product,
-  User,
-  Profile,
-};
+export default mergeTypes(types, { all: true });

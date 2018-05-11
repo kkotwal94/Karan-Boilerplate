@@ -1,7 +1,7 @@
+import { mergeResolvers } from 'merge-graphql-schemas';
 import productsQuery from './products';
 import usersQuery from './users';
 
-export default {
-  productsQuery,
-  usersQuery,
-};
+const resolvers = [productsQuery, usersQuery];
+
+export default mergeResolvers(resolvers);

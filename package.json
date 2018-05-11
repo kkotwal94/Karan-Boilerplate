@@ -30,6 +30,7 @@
     "graphql-yoga": "^1.13.1",
     "helmet": "^3.12.0",
     "lodash": "^4.17.10",
+    "merge-graphql-schemas": "^1.5.1",
     "method-override": "^2.3.10",
     "mongoose": "^5.0.17",
     "passport": "^0.4.0",
