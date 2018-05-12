@@ -1,1 +1,1 @@
-console.log('Hello world boiss');
+console.log('Entry point for react');
