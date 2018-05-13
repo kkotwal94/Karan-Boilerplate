@@ -89,9 +89,10 @@
     "build:babel": "babel server/ -d lib/",
     "prepublish": "npm run build",
     "start": "npm run build && cross-env NODE_ENV=production node compiled/server.js",
-    "dev": "cross-env NODE_ENV=development nodemon --exec npm run babel-node -- server/server.js",
+    "dev": "cross-env NODE_ENV=development nodemon",
     "build:dev": "cross-env NODE_ENV=development npm run webpack -- --env.server",
-    "build": "npm run clean && cross-env NODE_ENV=production npm run webpack -- --env.browser && cross-env NODE_ENV=production npm run webpack -- --env.server",
+    "build":
+      "npm run clean && cross-env NODE_ENV=production npm run webpack -- --env.browser && cross-env NODE_ENV=production npm run webpack -- --env.server",
     "webpack": "webpack --colors --display-error-details --config ./webpack/webpack.config.js",
     "flow": "flow",
     "docs": "md-magic --path '**/*.md' --ignore 'node_modules'",
@@ -99,16 +100,7 @@
     "clean": "rimraf public && rimraf compiled"
   },
   "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "jest --bail --findRelatedTests",
-      "prettier --write",
-      "git add"
-    ],
-    "*.scss": [
-      "stylelint --fix",
-      "prettier --write",
-      "git add"
-    ]
+    "*.js": ["eslint --fix", "jest --bail --findRelatedTests", "prettier --write", "git add"],
+    "*.scss": ["stylelint --fix", "prettier --write", "git add"]
   }
 }
