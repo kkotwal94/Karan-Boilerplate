@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt-nodejs';
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
   email: { type: String, unique: true, lowercase: true },

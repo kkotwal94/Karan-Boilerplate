@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 const ColorSchema = new mongoose.Schema({
   name: String,
@@ -6,7 +6,6 @@ const ColorSchema = new mongoose.Schema({
   createdDate: { type: Date, default: Date.now },
   updatedDate: { type: Date, default: Date.now },
   deletedAt: { type: Date },
-  products: [{ type: Schema.ObjectId, ref: 'Products' }],
   brand: { type: Schema.ObjectId, ref: 'Brands' },
 });
 

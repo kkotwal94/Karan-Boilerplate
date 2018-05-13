@@ -1,0 +1,16 @@
+import mongoose, { Schema } from 'mongoose';
+
+const DescriptionSchema = new mongoose.Schema({
+  product: { type: Schema.ObjectId, ref: 'Products' },
+  language: { type: String, default: 'en' },
+  title: String,
+  description: String,
+  shortDescription: String,
+  createdDate: { type: Date, default: Date.now() },
+  updatedDate: { type: Date },
+  deletedAt: { type: Date },
+});
+
+DescriptionSchema.index({ product: 1 });
+
+export default mongoose.model('Description', DescriptionSchema);
