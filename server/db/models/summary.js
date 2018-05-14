@@ -3,7 +3,6 @@ import mongoose, { Schema } from 'mongoose';
 const SummarySchema = new mongoose.Schema({
   style: String,
   department: String,
-  department: String,
   category: String,
   thumbnail: String,
   price: String,
@@ -12,7 +11,6 @@ const SummarySchema = new mongoose.Schema({
   secondaryAttributes: [{ type: Schema.ObjectId, ref: 'Attributes' }],
   lStyle: String,
   images: [{ type: Schema.ObjectId, ref: 'Images' }],
-  topLevelCategory: { type: Schema.ObjectId, ref: 'Category' },
   itemDescription: { type: Schema.ObjectId, ref: 'Description' },
   variants: [{ type: Schema.ObjectId, ref: 'Variants' }],
   createdDate: { type: Date, default: Date.now() },

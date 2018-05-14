@@ -1,19 +1,13 @@
 export default `
-  type Product {
-    id: String,
+  type Summary {
     style: String,
-    description: String,
     department: Category,
     category: Category,
-    brand: Brand,
     thumbnail: String,
-    modelImage: String,
-    pricing: Pricing,
+    price: Pricing,
     rating: Int,
-    meta: Meta,
     attributes: [Attribute],
     secondaryAttributes: [Attribute],
-    supplier: Supplier,
     variants: [Variant],
     createdDate: String,
     updatedDate: String,
@@ -21,7 +15,7 @@ export default `
   }
 
   type Query {
-    allProducts: [Product]
-    aProduct(id: String!): Product
+    allSummaries: [Summary],
+    aSummary(style: String!): Summary,
   }
 `;
