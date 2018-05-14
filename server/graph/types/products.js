@@ -15,13 +15,13 @@ export default `
     secondaryAttributes: [Attribute],
     supplier: Supplier,
     variants: [Variant],
-    createdDate: String,
-    updatedDate: String,
+    createdAt: String,
+    updatedAt: String,
     deletedAt: String,
   }
 
   type Query {
-    allProducts: [Product]
+    allProducts: [Product],
     aProduct(id: String!): Product
   }
 `;

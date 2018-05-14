@@ -5,6 +5,7 @@ const { controllers } = db;
 
 const usersController = controllers && controllers.users;
 const productsController = controllers && controllers.products;
+const brandsController = controllers && controllers.brands;
 
 export default app => {
   app.get('/', (req, res) => {
@@ -26,5 +27,12 @@ export default app => {
     app.post('/api/products', productsController.add);
     app.put('/api/products/:id', productsController.update);
     app.delete('/api/products', productsController.remove);
+  }
+
+  if (brandsController) {
+    app.get('/api/brands', brandsController.all);
+    app.post('/api/brands', brandsController.add);
+    app.put('/api/brands/:id', brandsController.update);
+    app.delete('/api/brands/:id', brandsController.remove);
   }
 };
