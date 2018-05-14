@@ -5,9 +5,7 @@ const SizeSchema = new mongoose.Schema({
   identifier: String,
   description: String,
   displayOrder: Number,
-  createdDate: { type: Date, default: Date.now() },
-  updatedDate: { type: Date },
   deletedAt: { type: Date },
-});
+}, { timestamps: true });
 
 export default mongoose.model('Sizes', SizeSchema);

@@ -12,10 +12,8 @@ const PricingSchema = new mongoose.Schema({
     saleStartDate: String,
     saleEndDate: String,
   },
-  createdDate: { type: Date, default: Date.now() },
-  updatedDate: { type: Date },
   deletedAt: { type: Date },
-});
+}, { timestamps: true });
 
 PricingSchema.index({ updatedAt: 1 });
 

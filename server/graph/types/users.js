@@ -11,6 +11,8 @@ export default `
     email: String,
     password: String,
     profile: Profile,
+    createdAt: String,
+    updatedAt: String,
   }
 
   type Query {

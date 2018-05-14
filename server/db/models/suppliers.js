@@ -5,6 +5,6 @@ const SupplierSchema = new mongoose.Schema({
   description: String,
   displayOrder: Number,
   products: [{ type: Schema.ObjectId, ref: 'Products' }],
-});
+},{ timestamps: true });
 
 export default mongoose.model('Suppliers', SupplierSchema);

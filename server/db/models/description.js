@@ -6,10 +6,8 @@ const DescriptionSchema = new mongoose.Schema({
   title: String,
   description: String,
   shortDescription: String,
-  createdDate: { type: Date, default: Date.now() },
-  updatedDate: { type: Date },
   deletedAt: { type: Date },
-});
+}, { timestamps: true });
 
 DescriptionSchema.index({ product: 1 });
 

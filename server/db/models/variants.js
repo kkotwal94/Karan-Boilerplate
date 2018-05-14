@@ -11,10 +11,8 @@ const VariantSchema = new mongoose.Schema({
   color: { type: Schema.ObjectId, ref: 'Colors' }, // Color
   attributes: [{ type: Schema.ObjectId, ref: 'Attributes' }],
   secondaryAttributes: [{ type: Schema.ObjectId, ref: 'Attributes' }],
-  createdDate: { type: Date, default: Date.now },
-  updatedDate: { type: Date },
   deletedAt: { type: Date },
-});
+}, { timestamps: true });
 
 VariantSchema.index({ product: 1, updatedDate: 1 });
 export default mongoose.model('Variants', VariantSchema);

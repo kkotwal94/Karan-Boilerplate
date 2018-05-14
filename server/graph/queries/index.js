@@ -11,6 +11,6 @@ const DateTimeResolver = {
   DateTime: GraphQLDateTime,
 };
 
-const resolvers = [DateTimeResolver, productsQuery, usersQuery, brandsQuery, colorsQuery];
+const resolvers = [productsQuery, usersQuery, brandsQuery, colorsQuery];
 
 export default mergeResolvers(resolvers);

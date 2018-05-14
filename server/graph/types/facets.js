@@ -3,6 +3,8 @@ export default `
     name: String,
     value: String,
     count: Int,
+    createdAt: String,
+    updatedAt: String,
   }
 
   type Query {

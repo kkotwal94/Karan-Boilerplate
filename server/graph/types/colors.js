@@ -6,6 +6,8 @@ export default `
     updatedDate: String,
     deletedAt: String,
     brand: Brand,
+    createdAt: String,
+    updatedAt: String,
   }
 
   type Query {

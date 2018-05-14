@@ -5,8 +5,8 @@ export default `
     title: String,
     description: String,
     shortDescription: String,
-    createdDate: String,
-    updatedDate: String,
+    createdAt: String,
+    updatedAt: String,
     deletedAt: String,
   }
 

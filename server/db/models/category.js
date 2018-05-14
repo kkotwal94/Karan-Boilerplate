@@ -6,6 +6,6 @@ const CategorySchema = new mongoose.Schema({
   slug: String,
   parentCategory: { type: Schema.ObjectId, refs: 'Category' },
   facets: [{ type: Schema.ObjectId, refs: 'Facets' }],
-});
+}, { timestamps: true });
 
 export default mongoose.model('Category', CategorySchema);

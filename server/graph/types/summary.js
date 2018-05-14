@@ -9,8 +9,8 @@ export default `
     attributes: [Attribute],
     secondaryAttributes: [Attribute],
     variants: [Variant],
-    createdDate: String,
-    updatedDate: String,
+    createdAt: String,
+    updatedAt: String,
     deletedAt: String,
   }
 

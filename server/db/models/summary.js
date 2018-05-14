@@ -13,9 +13,7 @@ const SummarySchema = new mongoose.Schema({
   images: [{ type: Schema.ObjectId, ref: 'Images' }],
   itemDescription: { type: Schema.ObjectId, ref: 'Description' },
   variants: [{ type: Schema.ObjectId, ref: 'Variants' }],
-  createdDate: { type: Date, default: Date.now() },
-  updatedDate: { type: Date },
   deletedAt: { type: Date },
-});
+}, { timestamps: true });
 
 export default mongoose.model('Summary', SummarySchema);

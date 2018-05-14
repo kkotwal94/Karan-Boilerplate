@@ -3,7 +3,9 @@ export default `
     name: String,
     description: String,
     displayOrder: Int,
-    products: [Product]
+    products: [Product],
+    createdAt: String,
+    updatedAt: String,
   }
 
   type Query {

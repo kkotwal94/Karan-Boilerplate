@@ -1,8 +1,8 @@
 export default `
   type Brand {
     name: String,
-    createdDate: String,
-    updatedDate: String,
+    createdAt: String,
+    updatedAt: String,
     colors: [Color],
   }
 

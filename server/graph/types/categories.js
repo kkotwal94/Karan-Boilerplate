@@ -5,6 +5,8 @@ export default `
     count: Int,
     parentCategory: Category,
     facets: [Facet],
+    createdAt: String,
+    updatedAt: String,
   }
 
   type Query {

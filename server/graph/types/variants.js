@@ -8,8 +8,8 @@ export default `
     color: Color,
     attributes: [Attribute],
     secondaryAttributes: [Attribute],
-    createdDate: String,
-    updatedDate: String,
+    createdAt: String,
+    updatedAt: String,
     deletedAt: String,
   }
 

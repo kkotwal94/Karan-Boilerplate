@@ -3,6 +3,8 @@ export default `
     title: String,
     description: String,
     keywords: [String],
+    createdAt: String,
+    updatedAt: String,
   }
 
   type Query {

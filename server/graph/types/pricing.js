@@ -3,8 +3,8 @@ export default `
     price: String,
     currency: String,
     sale: Sale,
-    createdDate: String,
-    updatedDate: String,
+    createdAt: String,
+    updatedAt: String,
     deletedAt: String
   }
 
