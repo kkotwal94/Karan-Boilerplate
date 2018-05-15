@@ -1,9 +1,8 @@
 export default `
   type Color {
+    _id: ID,
     name: String,
     hex: String,
-    createdDate: String,
-    updatedDate: String,
     deletedAt: String,
     brand: Brand,
     createdAt: String,

@@ -6,7 +6,7 @@ export default `
     website: String,
     picture: String,
   }
-  
+
   type User {
     email: String,
     password: String,
