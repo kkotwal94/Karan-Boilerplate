@@ -16,37 +16,46 @@ export default {
   },
   Mutation: {
     addBrand: async (root, { brand }) => {
-      return await Brands.create(brand);
+      const addedBrand = await Brands.create(brand);
+      const populatedBrands = await Brands.findById(addedBrand._id).populate('colors');
+      console.log(populatedBrands);
+      return populatedBrands;
     },
     updateBrand: async (root, { id, brand }) => {
-      return await Brands.findByIdAndUpdate(id, brand);
+      const updatedBrand = await Brands.findByIdAndUpdate(id, brand);
+      const populatedBrands = await Brands.findById(updatedBrand._id).populate('colors');
+      console.log(populatedBrands);
+      return populatedBrands;
     },
     removeBrand: async (root, { id }) => {
       const rem = await Brands.findByIdAndRemove(id);
       console.log(rem);
       return rem;
     },
-    addColor: async (root, { id, colorId }) => {
+    addColorToBrand: async (root, { id, colorId }) => {
       const brandModel = await Brands.findById(id);
       const colors = brandModel.colors;
       const exists = colors.indexOf(colorId);
-      console.log(exists);
       if (exists < 0) {
         colors.push(colorId);
-        brandModel.save();
+        await brandModel.save();
       }
       console.log(brandModel);
-      return brandModel;
+      const populatedBrand = await Brands.findById(id).populate('colors');
+      console.log(populatedBrand);
+      return populatedBrand;
     },
-    removeColor: async (root, { id, colorId }) => {
+    removeColorFromBrand: async (root, { id, colorId }) => {
       const brandModel = await Brands.findById(id);
       const colors = brandModel.colors;
       const exists = colors.indexOf(colorId);
       if (exists > -1) {
         colors.splice(exists, 1);
-        brandModel.save();
+        await brandModel.save();
       }
-      return brandModel;
+      const populatedBrand = await Brands.findById(id).populate('colors');
+      console.log(populatedBrand);
+      return populatedBrand;
     },
   },
 };

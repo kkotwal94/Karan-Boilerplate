@@ -28,25 +28,25 @@ export default `
   type Mutation {
     addBrand(
       brand: BrandInput
-    ): BrandFlat
+    ): Brand
 
     updateBrand(
       id: ID!
       brand: BrandInput
-    ): BrandFlat
+    ): Brand
 
     removeBrand(
       id: ID!
-    ): BrandFlat
+    ): Brand
 
-    addColor(
+    addColorToBrand(
       id: ID!
       colorId: ID!
-    ) : BrandFlat
+    ) : Brand
 
-    removeColor(
+    removeColorFromBrand(
       id: ID!
       colorId: ID!
-    ) : BrandFlat
+    ) : Brand
   }
 `;
