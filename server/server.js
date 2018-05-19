@@ -21,10 +21,11 @@ initGraphQL(app);
 
 initRoutes(app);
 
+/*
 app.get('*', (req, res) => {
   renderSSR(req, res);
 });
-
+*/
 app.listen(app.get('port'), () => {
   //const addr = app.address();
   console.log(`GraphiQL is now running on localhost:${app.get('port')}/graphiql`);
