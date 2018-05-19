@@ -7,7 +7,6 @@ import { ApolloProvider, getDataFromTree } from 'react-apollo';
 import ApolloClient, { createNetworkInterface } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import gql from 'graphql-tag';
-import App from './App';
 import createRoutes from './routes';
 
 const routes = createRoutes();
@@ -16,6 +15,8 @@ const client = new ApolloClient({
   link: new HttpLink({ uri: 'http://localhost:3000/graphql', fetch: fetch }),
   // here we're initializing the cache with the data from the server's cache
 });
+
+// This query is just a test to make sure its connected to gql
 
 client
   .query({

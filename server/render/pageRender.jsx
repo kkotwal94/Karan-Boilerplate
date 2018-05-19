@@ -7,7 +7,6 @@ import { createHttpLink } from 'apollo-link-http';
 import { StaticRouter } from 'react-router';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import Client from '../../app/Client';
-import App from '../../app/App';
 import createRoutes from '../../app/routes';
 import staticAssets from './static-assets';
 
@@ -43,7 +42,6 @@ export default (req, res) => {
         <head>
           <title>Product Admin</title>
         </head>
-
         <body>
           <div id="app">${content}</div>
           ${staticAssets.createAppScript()}
@@ -53,21 +51,4 @@ export default (req, res) => {
     res.send(html);
     res.end();
   });
-
-  /*
-  const content = renderToString(<App />);
-  res.send(`
-   <!DOCTYPE html>
-     <html>
-       <head>
-         <title>Product Admin</title>
-       </head>
-
-       <body>
-         <div id="app">${content}</div>
-         ${staticAssets.createAppScript()}
-       </body>
-     </html>
- `);
- */
 };
