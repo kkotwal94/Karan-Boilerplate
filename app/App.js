@@ -8,7 +8,7 @@ import NotFound from './NotFound';
 
 class App extends Component {
   render() {
-    return <div>Hells from app</div>;
+    return <div>Ok</div>;
   }
 }
 export default App;
