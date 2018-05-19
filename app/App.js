@@ -8,10 +8,7 @@ import NotFound from './NotFound';
 
 class App extends Component {
   render() {
-    <Switch>
-      <Route exact path="/" component={Home} />
-      <Route path="/NotFound" component={NotFound} />
-    </Switch>;
+    return <div>Hells from app</div>;
   }
 }
 export default App;

@@ -1,18 +1,12 @@
+import { Route, Switch } from 'react-router';
 import NotFound from './NotFound';
 import Home from './Home';
 
-const routes = [
-  {
-    path: '/',
-    name: 'home',
-    exact: true,
-    component: Home,
-  },
-  {
-    path: '/NotFound',
-    name: 'notfound',
-    component: NotFound,
-  },
-];
-
-export default routes;
+export default () => {
+  return (
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route path="/NotFound" component={NotFound} />
+    </Switch>
+  );
+};
