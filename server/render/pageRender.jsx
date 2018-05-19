@@ -37,8 +37,6 @@ export default (req, res) => {
   );
 
   getDataFromTree(app).then(appContent => {
-    console.log(appContent);
-    console.log(app);
     const content = renderToString(app);
     const html = `<!DOCTYPE html>
       <html>
