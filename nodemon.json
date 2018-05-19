@@ -1,5 +1,5 @@
 {
   "verbose": true,
   "watch": ["app/utils", "app/routes.jsx", "server", "webpack"],
-  "exec": "npm run babel-node -- server/server.js"
+  "exec": "npm run build:dev && node compiled/server.dev.js"
 }

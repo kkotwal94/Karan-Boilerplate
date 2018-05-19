@@ -8,13 +8,10 @@ const productsController = controllers && controllers.products;
 const brandsController = controllers && controllers.brands;
 
 export default app => {
+  /*
   app.get('/', (req, res) => {
-    res.sendfile(path.join(__dirname, '../../app', 'index.html'));
-  });
-
-  app.get('/api/test', (req, res) => {
-    res.send('Test Reached');
-  });
+    res.sendfile(path.resolve('app/index.html'));
+  });*/
 
   if (usersController) {
     app.post('/sessions', usersController.login);

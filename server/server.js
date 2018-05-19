@@ -5,6 +5,7 @@ import initHotLoader from './init/hotLoader';
 import initExpress from './init/express';
 import initGraphQL from './init/graphql';
 import initRoutes from './init/routes';
+import renderSSR from './render/pageRender';
 
 const app = express();
 
@@ -19,6 +20,10 @@ initExpress(app);
 initGraphQL(app);
 
 initRoutes(app);
+
+app.get('*', (req, res) => {
+  renderSSR(req, res);
+});
 
 app.listen(app.get('port'), () => {
   //const addr = app.address();

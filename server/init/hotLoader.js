@@ -4,7 +4,7 @@ import webpackDevMiddleWare from 'webpack-dev-middleware';
 import webpackHotMiddleWare from 'webpack-hot-middleware';
 
 export default app => {
-  const webpackCompiled = webpackConfig();
+  const webpackCompiled = webpackConfig({ browser: true });
   const compiler = webpack(webpackCompiled);
 
   app.use(

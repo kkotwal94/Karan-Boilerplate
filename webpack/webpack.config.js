@@ -12,8 +12,7 @@ module.exports = (env = {}) => {
     `Running webpack in ${process.env.NODE_ENV} mode on ${isBrowser ? 'browser' : 'server'}`
   );
 
-  const hotMiddlewareScript =
-    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
+  const hotMiddlewareScript = 'webpack-hot-middleware/client';
   const node = { __dirname: true, __filename: true };
 
   const prodServerRender = {
@@ -39,7 +38,7 @@ module.exports = (env = {}) => {
     mode: 'production',
     devtool: 'cheap-module-source-map',
     context: PATHS.app,
-    entry: { app: ['./index', 'babel-polyfill'] },
+    entry: { app: ['./client', 'babel-polyfill'] },
     node,
     output: {
       path: PATHS.assets,
@@ -56,7 +55,7 @@ module.exports = (env = {}) => {
     mode: 'development',
     devtool: 'eval',
     context: PATHS.app,
-    entry: { app: ['./index', hotMiddlewareScript, 'babel-polyfill'] },
+    entry: { app: ['./client', hotMiddlewareScript, 'babel-polyfill'] },
     node,
     output: {
       path: PATHS.assets,
