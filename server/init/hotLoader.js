@@ -14,11 +14,5 @@ export default app => {
     })
   );
 
-  app.use(
-    webpackHotMiddleWare(compiler, {
-      log: console.log,
-      path: '/__webpack_hmr',
-      heartbeat: 10 * 1000,
-    })
-  );
+  app.use(webpackHotMiddleWare(compiler));
 };

@@ -1,6 +1,7 @@
 {
   "presets": ["env", "flow"],
   "plugins": [
+    "react-hot-loader/babel",
     [
       "transform-runtime",
       {
