@@ -6,7 +6,6 @@ import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
 import { StaticRouter } from 'react-router';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import Client from '../../app/Client';
 import createRoutes from '../../app/routes';
 import staticAssets from './static-assets';
 
