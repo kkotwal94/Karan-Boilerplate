@@ -12,7 +12,7 @@ import createRoutes from './routes';
 const routes = createRoutes();
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: new HttpLink({ uri: 'http://localhost:3000/graphql', fetch: fetch }),
+  link: new HttpLink({ uri: '/graphql', fetch: fetch }),
   // here we're initializing the cache with the data from the server's cache
 });
 
