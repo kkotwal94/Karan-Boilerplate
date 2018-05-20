@@ -2,9 +2,7 @@ import { GOOGLE_ANALYTICS_ID } from '../../../config/app';
 import assets from '../../../public/assets/manifest.json';
 
 const createAppScript = () =>
-  `<script async type="text/javascript" charset="utf-8" src="/assets/${
-    assets['app.js']
-  }"></script>`;
+  `<script async type="text/javascript" charset="utf-8" src="${assets['app.js']}"></script>`;
 
 const createTrackingScript = () =>
   GOOGLE_ANALYTICS_ID ? createAnalyticsSnippet(GOOGLE_ANALYTICS_ID) : '';
@@ -19,7 +17,7 @@ ga('send', 'pageview');
 
 const createStylesheets = () => `
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed" />
-<link rel="stylesheet" href="/assets/${assets['app.css']}" />
+<link rel="stylesheet" href="${assets['app.css']}" />
 `;
 
 export { createAppScript, createTrackingScript, createStylesheets };
