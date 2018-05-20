@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
-import NotFound from './Screens/NotFound';
-import Home from './Screens/Home';
+import App from './Screens/App/App';
+import NotFound from './Screens/NotFound/NotFound';
 
 export default () => {
   return (
     <Switch>
-      <Route exact path="/" component={Home} />
+      <Route path="/" component={App} />
       <Route path="*" component={NotFound} />
     </Switch>
   );
