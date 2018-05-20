@@ -1,6 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import db from './db';
+import { isDebug } from '../config/app';
 import initHotLoader from './init/hotLoader';
 import initExpress from './init/express';
 import initGraphQL from './init/graphql';
@@ -13,7 +14,7 @@ db.connect();
 
 app.use(morgan('dev'));
 
-initHotLoader(app);
+initHotLoader(app, isDebug);
 
 initExpress(app);
 
