@@ -10,16 +10,13 @@ import Navigation from '../../Components/Navigation';
 import AppLayout from '../../Layout/AppLayout';
 import Sidebar from '../../Components/Sidebar';
 import Content from '../../Components/Content';
-import styles from '../../Css/main';
 import SidebarContext from '../../Context/SidebarContext';
-
-const cx = classNames.bind(styles);
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sideBarOpen: false,
+      sideBarOpen: true,
     };
   }
 

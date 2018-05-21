@@ -1,7 +1,8 @@
 import React from 'react';
 import fetch from 'cross-fetch';
 import { renderToString } from 'react-dom/server';
-import { SheetsRegistry, JssProvider } from 'react-jss';
+import { SheetsRegistry } from 'react-jss/lib/jss';
+import JssProvider from 'react-jss/lib/JssProvider';
 import {
   MuiThemeProvider,
   createMuiTheme,
@@ -14,6 +15,7 @@ import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
 import { StaticRouter } from 'react-router';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import createRoutes from '../../app/routes';
 import staticAssets from './static-assets';
 
@@ -47,14 +49,15 @@ export default (req, res) => {
     <ApolloProvider client={client}>
       <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
         <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
-          <StaticRouter location={req.url} context={context}>
-            {routes}
-          </StaticRouter>
+          <CssBaseline>
+            <StaticRouter location={req.url} context={context}>
+              {routes}
+            </StaticRouter>
+          </CssBaseline>
         </MuiThemeProvider>
       </JssProvider>
     </ApolloProvider>
   );
-
 
   getDataFromTree(app).then(appContent => {
     const content = renderToString(app);
