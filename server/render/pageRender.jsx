@@ -1,8 +1,7 @@
 import React from 'react';
 import fetch from 'cross-fetch';
 import { renderToString } from 'react-dom/server';
-import { SheetsRegistry } from 'react-jss/lib/jss';
-import JssProvider from 'react-jss/lib/JssProvider';
+import { SheetsRegistry, JssProvider } from 'react-jss';
 import {
   MuiThemeProvider,
   createMuiTheme,
@@ -56,14 +55,17 @@ export default (req, res) => {
     </ApolloProvider>
   );
 
-  const css = sheetsRegistry.toString();
 
   getDataFromTree(app).then(appContent => {
     const content = renderToString(app);
+    const css = sheetsRegistry.toString();
     const html = `<!DOCTYPE html>
       <html>
         <head>
           <title>Product Admin</title>
+          ${staticAssets.createStylesheets()}
+          ${staticAssets.createIcons()}
+          ${staticAssets.createTrackingScript()}
         </head>
         <body>
           <div id="app">${content}</div>

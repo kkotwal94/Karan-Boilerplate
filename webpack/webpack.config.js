@@ -55,7 +55,7 @@ module.exports = (env = {}) => {
     mode: 'development',
     devtool: 'eval',
     context: PATHS.app,
-    entry: { app: ['./client', hotMiddlewareScript, 'babel-polyfill'] },
+    entry: { app: ['./client', hotMiddlewareScript] },
     node,
     output: {
       path: PATHS.assets,

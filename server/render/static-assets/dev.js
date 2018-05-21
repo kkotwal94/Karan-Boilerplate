@@ -1,4 +1,7 @@
 import { GOOGLE_ANALYTICS_ID } from '../../../config/app';
+import appleIcon from '../../../app/Images/apple-touch-icon.png';
+import printflyIcon from '../../../app/Images/printfly-favricon-16.png';
+import biggerPrintflyIcon from '../../../app/Images/printfly-favricon-32.png';
 
 const createAppScript = () =>
   '<script async type="text/javascript" charset="utf-8" src="/assets/app.js"></script>';
@@ -17,4 +20,10 @@ ga('send', 'pageview');
 const createStylesheets = () =>
   '<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed" />';
 
-export { createAppScript, createTrackingScript, createStylesheets };
+const createIcons = () => `
+<link rel="apple-touch-icon" sizes="120x120" href="${appleIcon}" />
+<link rel="icon" type="image/png" sizes="32x32" href="${printflyIcon}" />
+<link rel="icon" types="image/png" sizes=16x16" href="${biggerPrintflyIcon}" />
+`;
+
+export { createAppScript, createTrackingScript, createStylesheets, createIcons };
