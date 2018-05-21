@@ -3,11 +3,33 @@ import { hydrate } from 'react-dom';
 import fetch from 'cross-fetch';
 import { BrowserRouter } from 'react-router-dom';
 import { HttpLink } from 'apollo-link-http';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import indigo from '@material-ui/core/colors/indigo';
+import red from '@material-ui/core/colors/red';
 import { ApolloProvider, getDataFromTree } from 'react-apollo';
 import ApolloClient, { createNetworkInterface } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import gql from 'graphql-tag';
 import createRoutes from './routes';
+
+class Main extends Component {
+  componentDidMount() {
+    const jssStyles = document.getElementById('jss-server-side');
+    if (jssStyles && jssStyles.parentNode) {
+      jssStyles.parentNode.removeChild(jssStyles);
+    }
+  }
+  render() {
+    return <BrowserRouter>{routes}</BrowserRouter>;
+  }
+}
+
+const theme = createMuiTheme({
+  palette: {
+    primary: indigo,
+    secondary: red,
+  },
+});
 
 const routes = createRoutes();
 const client = new ApolloClient({
@@ -34,7 +56,9 @@ client
 if (typeof window !== 'undefined') {
   hydrate(
     <ApolloProvider client={client}>
-      <BrowserRouter>{routes}</BrowserRouter>
+      <MuiThemeProvider theme={theme}>
+        <Main />
+      </MuiThemeProvider>
     </ApolloProvider>,
     document.getElementById('app')
   );

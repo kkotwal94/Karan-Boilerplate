@@ -1,6 +1,15 @@
 import React from 'react';
 import fetch from 'cross-fetch';
-import { renderToString, renderToStaticMarkup } from 'react-dom/server';
+import { renderToString } from 'react-dom/server';
+import { SheetsRegistry } from 'react-jss/lib/jss';
+import JssProvider from 'react-jss/lib/JssProvider';
+import {
+  MuiThemeProvider,
+  createMuiTheme,
+  createGenerateClassName,
+} from '@material-ui/core/styles';
+import indigo from '@material-ui/core/colors/indigo';
+import red from '@material-ui/core/colors/red';
 import { ApolloProvider, getDataFromTree } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
@@ -10,6 +19,15 @@ import createRoutes from '../../app/routes';
 import staticAssets from './static-assets';
 
 const routes = createRoutes();
+
+const theme = createMuiTheme({
+  palette: {
+    primary: indigo,
+    secondary: red,
+  },
+});
+const sheetsRegistry = new SheetsRegistry();
+const generateClassName = createGenerateClassName();
 
 export default (req, res) => {
   const client = new ApolloClient({
@@ -28,11 +46,17 @@ export default (req, res) => {
   const context = {};
   const app = (
     <ApolloProvider client={client}>
-      <StaticRouter location={req.url} context={context}>
-        {routes}
-      </StaticRouter>
+      <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
+        <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
+          <StaticRouter location={req.url} context={context}>
+            {routes}
+          </StaticRouter>
+        </MuiThemeProvider>
+      </JssProvider>
     </ApolloProvider>
   );
+
+  const css = sheetsRegistry.toString();
 
   getDataFromTree(app).then(appContent => {
     const content = renderToString(app);
@@ -43,6 +67,7 @@ export default (req, res) => {
         </head>
         <body>
           <div id="app">${content}</div>
+          <style id="jss-server-side">${css}</style>
           ${staticAssets.createAppScript()}
         </body>
       </html>`;
