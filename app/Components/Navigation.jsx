@@ -7,10 +7,19 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import SidebarContext from '../Context/SidebarContext';
 
 const drawerWidth = 240;
 
 const styles = theme => ({
+  root: {
+    flexGrow: 1,
+    height: 430,
+    zIndex: 1,
+    overflow: 'hidden',
+    position: 'relative',
+    display: 'flex',
+  },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
@@ -68,48 +77,47 @@ const styles = theme => ({
 });
 
 class Navigation extends Component {
-    
   constructor(props) {
-      super(props);
-      this.state = {
-          open: true,
-      };
+    super(props);
   }
-  
-  handleDrawerOpen = () => {
-    this.setState({ open: true });
-  };
 
-  handleDrawerClose = () => {
-    this.setState({ open: false });
-  };
-  
   render() {
-      const { classes, theme } = this.props;
-      return (
-        <AppBar 
-            position="absolute"
-            className={classNames(classes.appBar, this.state.open && classes.appBarShift)}>
-            <Toolbar disableGutters={!this.state.open}>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, this.state.open && classes.hide)}
+    const { classes, theme, handleDrawerOpen } = this.props;
+    return (
+      <SidebarContext.Consumer>
+        {sideBarOpen => {
+          return (
+            <AppBar
+              position="absolute"
+              className={classNames(classes.appBar, sideBarOpen && classes.appBarShift)}
             >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="title" color="inherit" noWrap>
-              Mini variant drawer
-            </Typography>
-          </Toolbar>
-        </AppBar>
-      );
-    }
+              <Toolbar disableGutters={!sideBarOpen}>
+                <IconButton
+                  color="inherit"
+                  aria-label="open drawer"
+                  onClick={() => {
+                    handleDrawerOpen();
+                  }}
+                  className={classNames(classes.menuButton, sideBarOpen && classes.hide)}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Typography variant="title" color="inherit" noWrap>
+                  Mini variant drawer
+                </Typography>
+              </Toolbar>
+            </AppBar>
+          );
+        }}
+      </SidebarContext.Consumer>
+    );
+  }
 }
 
 Navigation.propTypes = {
   classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
+  handleDrawerOpen: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(Navigation);

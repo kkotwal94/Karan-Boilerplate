@@ -12,6 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import SidebarContext from '../Context/SidebarContext';
 
 const drawerWidth = 240;
 
@@ -81,18 +82,48 @@ const styles = theme => ({
 });
 
 class Sidebar extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            open: true,
-        };
-    }
-    
-    handleSidebarOpen = () => {
-        this.setState({ open: true});
-    }
-    
-    handleSidebarClose = () => {
-        this.setState({ open: false});
-    }
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const { classes, theme, handleDrawerClose } = this.props;
+    return (
+      <SidebarContext.Consumer>
+        {sideBarOpen => {
+          return (
+            <Drawer
+              variant="permanent"
+              classes={{
+                paper: classNames(classes.drawerPaper, !sideBarOpen && classes.drawerPaperClose),
+              }}
+              open={sideBarOpen}
+            >
+              <div className={classes.toolbar}>
+                <IconButton
+                  onClick={() => {
+                    handleDrawerClose();
+                  }}
+                >
+                  {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+                </IconButton>
+              </div>
+              <Divider />
+              <List />
+              <Divider />
+              <List />
+            </Drawer>
+          );
+        }}
+      </SidebarContext.Consumer>
+    );
+  }
 }
+
+Sidebar.propTypes = {
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
+  handleDrawerClose: PropTypes.func.isRequired,
+};
+
+export default withStyles(styles, { withTheme: true })(Sidebar);
