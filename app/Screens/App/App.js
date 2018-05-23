@@ -8,7 +8,7 @@ import Home from './Home';
 import Dashboard from './Dashboard';
 import Navigation from '../../Components/Navigation';
 import AppLayout from '../../Layout/AppLayout';
-import Sidebar from '../../Components/Sidebar';
+import Sidebar from '../../Components/Sidebar/Sidebar';
 import Content from '../../Components/Content';
 import SidebarContext from '../../Context/SidebarContext';
 
@@ -37,7 +37,7 @@ class App extends Component {
     return (
       <AppLayout>
         <SidebarContext.Provider value={sideBarOpen}>
-          <Navigation handleDrawerOpen={this.handleDrawerOpen} />
+          <Navigation title="Product Admin" handleDrawerOpen={this.handleDrawerOpen} />
           <Sidebar handleDrawerClose={this.handleDrawerClose} />
         </SidebarContext.Provider>
         <Content>

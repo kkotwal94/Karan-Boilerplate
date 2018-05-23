@@ -12,8 +12,9 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import SidebarContext from '../Context/SidebarContext';
-
+import SidebarContext from '../../Context/SidebarContext';
+import { navigationOptions, defaultOptions } from '../../Utils/ProductNavigation';
+import SidebarListElements from './SidebarListElements';
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -71,7 +72,7 @@ const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    padding: '0 8px',
+    padding: '0',
     ...theme.mixins.toolbar,
   },
   content: {
@@ -79,6 +80,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
   },
+  sidebarHeader: {},
 });
 
 class Sidebar extends Component {
@@ -88,6 +90,7 @@ class Sidebar extends Component {
 
   render() {
     const { classes, theme, handleDrawerClose } = this.props;
+    console.log(navigationOptions);
     return (
       <SidebarContext.Consumer>
         {sideBarOpen => {
@@ -100,6 +103,9 @@ class Sidebar extends Component {
               open={sideBarOpen}
             >
               <div className={classes.toolbar}>
+                <div className={classes.sidebarHeader}>
+                  <Typography>Printfly</Typography>
+                </div>
                 <IconButton
                   onClick={() => {
                     handleDrawerClose();
@@ -109,9 +115,9 @@ class Sidebar extends Component {
                 </IconButton>
               </div>
               <Divider />
-              <List />
+              <SidebarListElements elements={navigationOptions} />
               <Divider />
-              <List />
+              <SidebarListElements elements={defaultOptions} />
             </Drawer>
           );
         }}

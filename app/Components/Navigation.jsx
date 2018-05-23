@@ -82,7 +82,7 @@ class Navigation extends Component {
   }
 
   render() {
-    const { classes, theme, handleDrawerOpen } = this.props;
+    const { classes, theme, handleDrawerOpen, title } = this.props;
     return (
       <SidebarContext.Consumer>
         {sideBarOpen => {
@@ -103,7 +103,7 @@ class Navigation extends Component {
                   <MenuIcon />
                 </IconButton>
                 <Typography variant="title" color="inherit" noWrap>
-                  Mini variant drawer
+                  {title}
                 </Typography>
               </Toolbar>
             </AppBar>
@@ -118,6 +118,7 @@ Navigation.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   handleDrawerOpen: PropTypes.func.isRequired,
+  title: PropTypes.string,
 };
 
 export default withStyles(styles, { withTheme: true })(Navigation);
