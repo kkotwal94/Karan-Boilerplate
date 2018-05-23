@@ -1,17 +1,18 @@
 version: "2"
 services:
   app:
-    container_name: app
+    container_name: Karan-Boilerplate
     restart: always
     build: .
     ports:
       - "3000:3000"
     links:
       - mongo
-  mongo:
-    container_name: mongo
-    image: mongo
     volumes:
-      - ./data:/data/db
+      - .:/app
+      - /app/node_modules
+  mongo:
+    container_name: Karan-Mongo
+    image: mongo
     ports:
       - "27017:27017"
