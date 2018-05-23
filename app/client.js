@@ -23,7 +23,6 @@ class Main extends Component {
   }
   */
   render() {
-    console.log(this.props);
     return <BrowserRouter>{routes}</BrowserRouter>;
   }
 }

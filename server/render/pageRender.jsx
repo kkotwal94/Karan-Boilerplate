@@ -27,10 +27,10 @@ const theme = createMuiTheme({
     secondary: red,
   },
 });
-const sheetsRegistry = new SheetsRegistry();
-const generateClassName = createGenerateClassName();
 
 export default (req, res) => {
+  const sheetsRegistry = new SheetsRegistry();
+  const generateClassName = createGenerateClassName();
   const client = new ApolloClient({
     ssrMode: true,
     link: createHttpLink({
